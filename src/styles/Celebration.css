@@ -1,0 +1,471 @@
+/* ======================================================
+   CELEBRATION PAGE
+   ====================================================== */
+
+.celebration-page {
+  min-height: 100vh;
+  background: linear-gradient(160deg, #1a0010 0%, #2d0030 25%, #1a0020 55%, #0d0020 100%);
+  position: relative;
+  overflow-x: hidden;
+  padding: 24px 20px 80px;
+  display: flex;
+  justify-content: center;
+}
+
+/* ── CONFETTI ─────────────────────────────────────── */
+.confetti-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.confetti-piece {
+  position: absolute;
+  top: -20px;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+.confetti-0 { background: #ff69b4; }
+.confetti-1 { background: #ff1493; border-radius: 0; transform: rotate(45deg); }
+.confetti-2 { background: #ffd700; border-radius: 50%; width: 8px; height: 8px; }
+.confetti-3 { background: #ff6b9d; }
+.confetti-4 { background: #c084fc; transform: rotate(30deg); }
+.confetti-5 { background: #f9a8d4; border-radius: 50%; width: 6px; height: 6px; }
+
+/* ── FLOATING HEARTS ──────────────────────────────── */
+.floating-hearts-cele {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+.heart-cele {
+  position: absolute;
+  bottom: 0;
+  opacity: 0.45;
+}
+
+/* ── CONTENT LAYOUT ───────────────────────────────── */
+.celebration-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ── TITLE ────────────────────────────────────────── */
+.anniversary-title-wrap {
+  text-align: center;
+  padding-top: 16px;
+}
+.cele-label {
+  font-size: 1.05em;
+  color: #ff69b4;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.cele-title {
+  font-size: clamp(2.6em, 8vw, 3.8em);
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  background: linear-gradient(135deg, #ffd700 0%, #ff69b4 50%, #ff1493 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  margin: 4px 0 10px;
+  line-height: 1.15;
+}
+.cele-subtitle {
+  font-size: 0.95em;
+  color: #ffb6c1;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+/* ======================================================
+   CSS CAKE
+   ====================================================== */
+.cake-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.cake {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ── CANDLES ──────────────────────────────────────── */
+.candles-row {
+  display: flex;
+  gap: 26px;
+  align-items: flex-end;
+  margin-bottom: 4px;
+}
+.candle-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.candle {
+  width: 14px;
+  border-radius: 3px 3px 2px 2px;
+  position: relative;
+}
+/* Wick */
+.candle::before {
+  content: '';
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 8px;
+  background: #555;
+  border-radius: 1px;
+  z-index: 2;
+}
+.candle-0 { height: 38px; background: linear-gradient(180deg, #ff89c2 0%, #ff1493 100%); }
+.candle-1 { height: 48px; background: linear-gradient(180deg, #fff176 0%, #ffaa00 100%); }
+.candle-2 { height: 38px; background: linear-gradient(180deg, #d8b4fe 0%, #9333ea 100%); }
+
+/* ── FLAME ────────────────────────────────────────── */
+.flame-container {
+  position: absolute;
+  top: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.flame-outer {
+  position: absolute;
+  bottom: 0;
+  width: 13px;
+  height: 22px;
+  background: linear-gradient(180deg, #fff176 0%, #ffa726 45%, #ff6d00 100%);
+  border-radius: 50% 50% 20% 20%;
+  transform-origin: bottom center;
+}
+.flame-inner {
+  position: absolute;
+  bottom: 2px;
+  width: 7px;
+  height: 13px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff9c4 100%);
+  border-radius: 50% 50% 20% 20%;
+  transform-origin: bottom center;
+}
+
+/* ── SMOKE ────────────────────────────────────────── */
+.smoke {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 18px;
+  background: linear-gradient(180deg, transparent 0%, rgba(180,180,180,0.7) 100%);
+  border-radius: 2px;
+  transform-origin: bottom center;
+}
+
+/* ── TOP TIER ─────────────────────────────────────── */
+.cake-top-tier {
+  width: 118px;
+  height: 58px;
+  background: linear-gradient(180deg, #ff89c2 0%, #ff1493 100%);
+  border-radius: 6px 6px 0 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+/* Stripe texture */
+.cake-top-tier::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 14px, rgba(255,255,255,0.1) 14px, rgba(255,255,255,0.1) 15.5px);
+}
+.cake-top-frosting-top {
+  height: 12px;
+  background: #fff0f6;
+  border-radius: 6px 6px 0 0;
+  position: relative;
+}
+/* Scallop edge on frosting */
+.cake-top-frosting-top::after {
+  content: '';
+  position: absolute;
+  bottom: -7px;
+  left: 0; right: 0;
+  height: 10px;
+  background:
+    radial-gradient(circle at 10% 0%, #fff0f6 48%, transparent 49%),
+    radial-gradient(circle at 26% 0%, #fff0f6 48%, transparent 49%),
+    radial-gradient(circle at 43% 0%, #fff0f6 48%, transparent 49%),
+    radial-gradient(circle at 60% 0%, #fff0f6 48%, transparent 49%),
+    radial-gradient(circle at 76% 0%, #fff0f6 48%, transparent 49%),
+    radial-gradient(circle at 92% 0%, #fff0f6 48%, transparent 49%);
+  background-size: 18% 100%;
+}
+.cake-top-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.cake-heart-deco {
+  font-size: 1.5em;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  font-family: serif;
+}
+.cake-text-deco {
+  font-size: 2em;
+  font-weight: bold;
+  color: #fff;
+  font-family: 'Georgia', serif;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+}
+
+/* ── MID TIER ─────────────────────────────────────── */
+.cake-mid-tier {
+  width: 158px;
+  height: 68px;
+  background: linear-gradient(180deg, #c084fc 0%, #7e22ce 100%);
+  position: relative;
+  overflow: visible;
+}
+.cake-mid-tier::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 18px, rgba(255,255,255,0.07) 18px, rgba(255,255,255,0.07) 19.5px);
+}
+.cake-mid-content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+.cake-star-deco {
+  font-size: 1.5em;
+  color: #ffd700;
+  text-shadow: 0 0 8px rgba(255,215,0,0.8);
+}
+
+/* ── BASE TIER ────────────────────────────────────── */
+.cake-base-tier {
+  width: 198px;
+  height: 76px;
+  background: linear-gradient(180deg, #fda4af 0%, #fb7185 100%);
+  position: relative;
+  overflow: visible;
+}
+.cake-base-tier::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(90deg, transparent, transparent 22px, rgba(255,255,255,0.09) 22px, rgba(255,255,255,0.09) 23.5px);
+}
+.cake-base-dots {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.c-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 6px rgba(255,255,255,0.8);
+}
+
+/* ── FROSTING DRIPS ───────────────────────────────── */
+.cake-frosting-drips {
+  position: absolute;
+  top: -1px;
+  left: 0; right: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.drip {
+  position: absolute;
+  top: 0;
+  background: #ff89c2;
+  border-radius: 0 0 8px 8px;
+}
+/* Mid tier drips (pink from top tier) */
+.drip-a { left: 14px; width: 11px; height: 20px; }
+.drip-b { left: 58px; width: 14px; height: 16px; background: #ffb6d9; }
+.drip-c { right: 16px; width: 12px; height: 22px; }
+
+/* Base tier drips (purple from mid tier) */
+.cake-base-drips .drip { background: #c084fc; }
+.drip-d { left: 12px; width: 11px; height: 18px; }
+.drip-e { left: 44px; width: 13px; height: 14px; background: #d8b4fe; }
+.drip-f { right: 40px; width: 12px; height: 20px; }
+.drip-g { right: 12px; width: 10px; height: 15px; background: #d8b4fe; }
+
+/* ── PLATE ────────────────────────────────────────── */
+.cake-plate {
+  width: 228px;
+  height: 18px;
+  background: linear-gradient(180deg, #fce7f3 0%, #fbcfe8 100%);
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 4px 14px rgba(255,20,147,0.3);
+}
+
+/* ── BLOW BUTTON / WISH MSG ───────────────────────── */
+.blow-btn {
+  padding: 13px 32px;
+  font-size: 1.05em;
+  background: linear-gradient(135deg, #ffd700, #ffaa00);
+  color: #333;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 6px 20px rgba(255,215,0,0.45);
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s;
+}
+.blow-btn:active { transform: scale(0.95); }
+
+.blown-msg {
+  font-size: 1.15em;
+  color: #ffd700;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* ======================================================
+   LOVE MESSAGE CARD
+   ====================================================== */
+.love-message-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid rgba(255, 105, 180, 0.3);
+  border-radius: 26px;
+  padding: 32px 24px 28px;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.lmc-heart-top {
+  font-size: 2.4em;
+  margin-bottom: 10px;
+}
+.lmc-heading {
+  font-size: 1.75em;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  color: #ff89c2;
+  font-weight: bold;
+  margin-bottom: 18px;
+}
+.lmc-text {
+  font-size: 1.04em;
+  color: #fce7f3;
+  line-height: 1.9;
+  margin-bottom: 14px;
+  text-align: left;
+}
+.lmc-divider {
+  font-size: 1.1em;
+  color: #ff69b4;
+  margin: 16px 0;
+  letter-spacing: 4px;
+}
+.lmc-quote {
+  font-size: 1.05em;
+  color: #ffd700;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.7;
+  border-left: 3px solid #ff69b4;
+  padding: 10px 14px;
+  margin: 18px 0;
+  text-align: left;
+  background: rgba(255, 105, 180, 0.1);
+  border-radius: 0 10px 10px 0;
+}
+.lmc-signature {
+  font-size: 1.35em;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  color: #ff89c2;
+  font-weight: bold;
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+.lmc-from {
+  font-size: 1.05em;
+  color: #ffb6c1;
+  font-style: italic;
+  margin-bottom: 18px;
+}
+.lmc-tag {
+  font-size: 1.75em;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  background: linear-gradient(135deg, #ffd700, #ff69b4, #ff1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+}
+
+/* ── BACK BUTTON ──────────────────────────────────── */
+.back-home-btn {
+  padding: 14px 36px;
+  font-size: 1.05em;
+  background: transparent;
+  color: #ff89c2;
+  border: 1.5px solid rgba(255, 105, 180, 0.4);
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.2s;
+}
+.back-home-btn:hover { background: rgba(255, 105, 180, 0.1); }
+.back-home-btn:active { transform: scale(0.95); }
+
+/* ── RESPONSIVE ───────────────────────────────────── */
+@media (max-width: 400px) {
+  .cele-title { font-size: 2.6em; }
+  .cake-base-tier { width: 168px; }
+  .cake-mid-tier { width: 134px; }
+  .cake-top-tier { width: 100px; }
+  .cake-plate { width: 194px; }
+  .love-message-card { padding: 26px 18px 22px; }
+  .lmc-text { font-size: 0.98em; }
+}

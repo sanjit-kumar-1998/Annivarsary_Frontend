@@ -1,0 +1,344 @@
+.lock-screen {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Romantic Hearts */
+.romantic-hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart-float {
+  position: absolute;
+  font-size: 26px;
+  animation: hearts-rise linear infinite;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+}
+
+@keyframes hearts-rise {
+  0% {
+    transform: translateY(110vh) rotate(0deg) scale(0.6);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg) scale(0.6);
+    opacity: 0;
+  }
+}
+
+/* Lock Box */
+.lock-box {
+  background: rgba(255, 255, 255, 0.97);
+  padding: 35px 25px 30px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(255, 105, 180, 0.5);
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  border: 3px solid rgba(255, 182, 193, 0.6);
+}
+
+/* Lock Icon */
+.lock-emoji {
+  font-size: 4em;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.5));
+}
+
+/* Title */
+.lock-title {
+  font-size: 2em;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 12px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.lock-subtitle {
+  font-size: 1em;
+  color: #c44569;
+  margin-bottom: 25px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Unlock Box */
+.unlock-box {
+  margin: 25px 0;
+  padding: 22px 18px;
+  background: linear-gradient(135deg, rgba(255, 182, 193, 0.25) 0%, rgba(255, 218, 224, 0.25) 100%);
+  border-radius: 18px;
+  border: 2px solid rgba(255, 105, 180, 0.4);
+  animation: glow-pulse 2s infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 105, 180, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(255, 105, 180, 0);
+  }
+}
+
+.unlock-text {
+  font-size: 1.7em;
+  background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.unlock-subtext {
+  font-size: 1.05em;
+  color: #c44569;
+  font-weight: 500;
+}
+
+/* Message */
+.lock-message {
+  margin: 18px 0;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 1em;
+  font-weight: 600;
+  min-height: 28px;
+}
+
+.error-msg {
+  color: #e74c3c;
+  background: rgba(231, 76, 60, 0.1);
+  border: 2px solid rgba(231, 76, 60, 0.3);
+}
+
+.success-msg {
+  color: #27ae60;
+  background: rgba(39, 174, 96, 0.1);
+  border: 2px solid rgba(39, 174, 96, 0.3);
+}
+
+/* Form */
+.lock-form {
+  margin: 22px 0;
+}
+
+.input-wrapper {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.password-field {
+  width: 100%;
+  padding: 15px 55px 15px 18px;
+  font-size: 1.05em;
+  border: 3px solid #ffb6c1;
+  border-radius: 15px;
+  background: white;
+  box-sizing: border-box;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.password-field:focus {
+  outline: none;
+  border-color: #ff6b9d;
+  box-shadow: 0 0 20px rgba(255, 107, 157, 0.4);
+}
+
+.password-field::placeholder {
+  color: #ffb6c1;
+}
+
+/* Key Button */
+.key-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 6px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.key-button:active {
+  transform: translateY(-50%) scale(1.25);
+  filter: drop-shadow(0 0 8px rgba(255, 107, 157, 0.7));
+}
+
+/* Unlock Button */
+.unlock-btn {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.15em;
+  background: linear-gradient(135deg, #ff6b9d 0%, #ffa0c9 100%);
+  color: white;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(255, 107, 157, 0.5);
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+  -webkit-tap-highlight-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.unlock-btn:active:not(:disabled) {
+  transform: scale(0.98);
+  box-shadow: 0 5px 15px rgba(255, 107, 157, 0.6);
+}
+
+.unlock-btn:disabled {
+  background: linear-gradient(135deg, #ddd 0%, #bbb 100%);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Hint Button */
+.hint-btn {
+  width: 100%;
+  padding: 13px;
+  margin-top: 15px;
+  font-size: 1em;
+  background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+  color: #c44569;
+  border: 2px solid #ffb6c1;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(255, 182, 193, 0.4);
+  transition: all 0.3s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.hint-btn:active {
+  transform: scale(0.98);
+}
+
+/* Hint Box */
+.hint-box {
+  margin-top: 18px;
+  padding: 18px;
+  background: linear-gradient(135deg, rgba(255, 240, 245, 0.9) 0%, rgba(255, 228, 225, 0.9) 100%);
+  border-radius: 15px;
+  border: 2px solid rgba(255, 182, 193, 0.5);
+  overflow: hidden;
+}
+
+.hint-message {
+  color: #c44569;
+  font-size: 0.95em;
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.hint-example {
+  color: #ff6b9d;
+  font-size: 0.9em;
+  font-family: 'Courier New', monospace;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Warning Message */
+.warning-message {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(255, 228, 225, 0.8) 0%, rgba(255, 192, 203, 0.8) 100%);
+  border-radius: 12px;
+  border-left: 4px solid #ff6b9d;
+}
+
+.warning-message p {
+  color: #c44569;
+  font-size: 0.95em;
+  font-weight: 600;
+}
+
+.info-msg {
+  color: #ff6b9d;
+  background: rgba(255, 107, 157, 0.1);
+  border: 2px solid rgba(255, 107, 157, 0.3);
+}
+
+/* Love Quote */
+.love-quote {
+  margin-top: 25px;
+  color: #ff6b9d;
+  font-size: 1em;
+  font-style: italic;
+  padding: 15px;
+  background: rgba(255, 182, 193, 0.15);
+  border-radius: 12px;
+  border-left: 3px solid #ff6b9d;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* Spinner */
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .lock-box {
+    padding: 30px 20px 25px;
+  }
+
+  .lock-emoji {
+    font-size: 3.5em;
+  }
+
+  .lock-title {
+    font-size: 1.8em;
+  }
+
+  .unlock-text {
+    font-size: 1.5em;
+  }
+}

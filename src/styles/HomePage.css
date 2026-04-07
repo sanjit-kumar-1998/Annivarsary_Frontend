@@ -1,0 +1,532 @@
+/* ========== GLOBAL ========== */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* scroll happens inside .home-page only */
+}
+
+/* ========== HOME PAGE — the ONE scroll container ========== */
+.home-page {
+  width: 100%;
+  height: 100vh;
+  height: 100dvh; /* 100dvh fixes Android Chrome bottom-bar white gap */
+
+  background: linear-gradient(135deg, #ffe5ec 0%, #ffd6e8 25%, #ffc7e3 50%, #ffb8de 75%, #ffa9d9 100%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* NEVER center — causes bottom clipping on mobile */
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch; /* iOS momentum scroll */
+
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+/* ========== FIRST SCREEN ========== */
+.first-screen {
+  width: 100%;
+  min-height: calc(100vh - 40px);
+  min-height: calc(100dvh - 40px); /* subtract home-page padding */
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Floating Hearts */
+.floating-hearts-first {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.heart-float-first {
+  position: absolute;
+  animation: float-up-hearts 5s linear infinite;
+  opacity: 0.7;
+  filter: drop-shadow(0 0 10px rgba(255, 105, 180, 0.6));
+}
+
+@keyframes float-up-hearts {
+  0%   { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.8; }
+  90%  { opacity: 0.8; }
+  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
+}
+
+/* Main Heart Container */
+.main-heart-container {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.big-heart-shape {
+  position: relative;
+  width: 350px;
+  max-width: 85vw;
+}
+
+.heart-svg-main {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 15px 40px rgba(255, 23, 68, 0.5));
+}
+
+.names-in-main-heart {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 75%;
+  text-align: center;
+  animation: heartTextFloat 3s ease-in-out infinite;
+}
+
+@keyframes heartTextFloat {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50%       { transform: translate(-50%, -50%) translateY(-5px); }
+}
+
+.main-name {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #8b008b;
+  line-height: 1.2;
+  white-space: nowrap;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  text-shadow:
+    0 2px 8px rgba(255, 255, 255, 1),
+    0 0 20px rgba(255, 255, 255, 0.9),
+    0 0 30px rgba(139, 0, 139, 0.5);
+  letter-spacing: 1px;
+}
+
+.main-heart-symbol {
+  font-size: 2em;
+  margin: 2px 0;
+  line-height: 1;
+}
+
+.hashtag-name { text-align: center; }
+
+.hashtag-name h1 {
+  font-size: 3.8em;
+  background: linear-gradient(135deg, #8b008b 0%, #ff1493 50%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  filter: drop-shadow(0 4px 15px rgba(139, 0, 139, 0.4));
+  margin: 0;
+}
+
+.first-subtitle {
+  font-size: 1.5em;
+  color: #ff1493;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
+}
+
+/* Continue Button */
+.continue-button {
+  padding: 18px 45px;
+  font-size: 1.25em;
+  background: linear-gradient(135deg, #ff1744 0%, #ff69b4 100%);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow:
+    0 10px 30px rgba(255, 23, 68, 0.4),
+    0 5px 15px rgba(255, 105, 180, 0.3);
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.continue-button::before {
+  content: '✨';
+  position: absolute;
+  left: 15px;
+  font-size: 1.2em;
+  animation: sparkle-left 2s ease-in-out infinite;
+}
+
+.continue-button::after {
+  content: '✨';
+  position: absolute;
+  right: 15px;
+  font-size: 1.2em;
+  animation: sparkle-right 2s ease-in-out infinite;
+}
+
+@keyframes sparkle-left {
+  0%, 100% { opacity: 0.5; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+@keyframes sparkle-right {
+  0%, 100% { opacity: 0.5; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+
+.continue-button:active { transform: scale(0.95); }
+
+/* ========== STORY PAGES ========== */
+.story-page,
+.story-page-scroll {
+  width: 100%;
+  max-width: 500px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  height: auto;
+  min-height: unset;
+  max-height: none;
+  overflow: visible; /* .home-page is the scroller */
+
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+
+/* Story Card */
+.story-card-page {
+  background: linear-gradient(145deg, #ffffff 0%, #fff5f8 100%);
+  border-radius: 30px;
+  padding: 40px 30px;
+  box-shadow:
+    0 15px 40px rgba(255, 105, 180, 0.3),
+    0 5px 15px rgba(255, 182, 193, 0.2);
+  border: 3px solid #ffb6c1;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.story-card-page::before,
+.story-card-page::after {
+  content: '💕';
+  position: absolute;
+  font-size: 2em;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.story-card-page::before { top: 15px;    left: 15px;  transform: rotate(-15deg); }
+.story-card-page::after  { bottom: 15px; right: 15px; transform: rotate(15deg);  }
+
+.story-icon-page {
+  font-size: 4.5em;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 5px 15px rgba(255, 105, 180, 0.4));
+  animation: icon-float 3s ease-in-out infinite;
+}
+
+@keyframes icon-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.story-title-page {
+  font-size: 2.2em;
+  background: linear-gradient(135deg, #ff1744 0%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  margin-bottom: 10px;
+  letter-spacing: 0.5px;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+}
+
+.story-date-page {
+  font-size: 1.15em;
+  color: #ff69b4;
+  font-weight: 600;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.story-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #ff1744 0%, #ff69b4 50%, #ffb6c1 100%);
+  margin: 20px auto;
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.3);
+}
+
+.story-text-page {
+  font-size: 1.12em;
+  color: #555;
+  line-height: 1.9;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.story-emoji-page {
+  font-size: 2.2em;
+  margin-top: 15px;
+  animation: emoji-pulse 2s ease-in-out infinite;
+}
+
+@keyframes emoji-pulse {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.15); }
+}
+
+.page-num-badge {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  font-size: 0.82em;
+  color: #ff69b4;
+  font-weight: 700;
+  background: rgba(255, 182, 193, 0.2);
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 105, 180, 0.3);
+}
+
+.story-quote-box {
+  background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+  border-left: 4px solid #ff69b4;
+  border-radius: 0 14px 14px 0;
+  padding: 14px 18px;
+  margin: 14px 0;
+  text-align: left;
+}
+
+.story-quote-box p {
+  font-size: 1.05em;
+  color: #cc2255;
+  line-height: 1.8;
+  font-style: italic;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Final Card */
+.final-card {
+  background: linear-gradient(145deg, #fff0f5 0%, #ffe4ec 100%);
+  border-radius: 30px;
+  padding: 40px 30px;
+  box-shadow:
+    0 15px 40px rgba(255, 105, 180, 0.35),
+    0 5px 15px rgba(255, 182, 193, 0.25);
+  border: 3px solid #ff69b4;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.final-card::before {
+  content: '💝';
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 3em;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.final-message-text {
+  font-size: 1.18em;
+  color: #555;
+  line-height: 1.9;
+  font-style: italic;
+  margin-bottom: 25px;
+  font-weight: 500;
+}
+
+.signature-text {
+  font-size: 1.6em;
+  background: linear-gradient(135deg, #ff1744 0%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  margin-bottom: 20px;
+}
+
+.hashtag-end {
+  font-size: 2em;
+  background: linear-gradient(135deg, #8b008b 0%, #ff1493 50%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  filter: drop-shadow(0 3px 10px rgba(139, 0, 139, 0.3));
+}
+
+/* Navigation Buttons */
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-button {
+  flex: 1;
+  padding: 16px 20px;
+  font-size: 1.1em;
+  background: linear-gradient(145deg, #ffffff 0%, #fff5f8 100%);
+  color: #ff1493;
+  border: 3px solid #ffb6c1;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 5px 15px rgba(255, 105, 180, 0.2);
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+.nav-button-next {
+  background: linear-gradient(135deg, #ff1744, #ff69b4);
+  color: white;
+  border-color: #ff1744;
+}
+
+.nav-button:active { transform: scale(0.95); }
+
+.page-indicator {
+  text-align: center;
+  font-size: 1.05em;
+  color: #ff69b4;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 8px 20px;
+  border-radius: 20px;
+  display: inline-block;
+  margin: 0 auto;
+  box-shadow: 0 3px 10px rgba(255, 182, 193, 0.2);
+}
+
+.swipe-hint {
+  text-align: center;
+  font-size: 0.88em;
+  color: #ff69b4;
+  opacity: 0.65;
+  font-style: italic;
+  padding: 2px 0 8px;
+}
+
+.final-nav-row {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.celebration-button {
+  padding: 18px 24px;
+  font-size: 1.15em;
+  background: linear-gradient(135deg, #8b008b, #ff1493, #ff69b4);
+  color: white;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: bold;
+  width: 100%;
+  letter-spacing: 0.5px;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.15s;
+  touch-action: manipulation;
+  position: relative;
+  overflow: hidden;
+}
+
+.celebration-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 28%;
+  height: 200%;
+  background: rgba(255, 255, 255, 0.22);
+  transform: skewX(-20deg);
+  animation: shimmer-btn 2.4s ease-in-out infinite;
+}
+
+@keyframes shimmer-btn {
+  0%   { left: -60%; }
+  100% { left: 130%; }
+}
+
+.celebration-button:active { transform: scale(0.95); }
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 500px) {
+  .home-page { padding: 16px; }
+
+  .big-heart-shape   { width: 280px; }
+  .main-name         { font-size: 2em; }
+  .main-heart-symbol { font-size: 1.8em; }
+  .hashtag-name h1   { font-size: 3em; }
+  .first-subtitle    { font-size: 1.2em; }
+
+  .continue-button   { padding: 15px 35px; font-size: 1.1em; }
+
+  .story-card-page   { padding: 30px 20px; }
+  .story-icon-page   { font-size: 3.5em; }
+  .story-title-page  { font-size: 1.9em; }
+  .story-text-page   { font-size: 1.05em; }
+
+  .nav-button        { padding: 14px 16px; font-size: 1em; }
+  .final-card        { padding: 30px 20px; }
+}
+
+@media (max-width: 380px) {
+  .big-heart-shape  { width: 240px; }
+  .main-name        { font-size: 1.7em; }
+  .hashtag-name h1  { font-size: 2.6em; }
+  .story-title-page { font-size: 1.7em; }
+}
+
+@media (max-height: 700px) and (orientation: landscape) {
+  .main-heart-container { gap: 16px; }
+  .big-heart-shape      { width: 200px; }
+  .hashtag-name h1      { font-size: 2.4em; }
+  .first-subtitle       { font-size: 1.1em; }
+  .continue-button      { padding: 12px 30px; font-size: 1em; }
+  .story-card-page      { padding: 25px 20px; }
+}

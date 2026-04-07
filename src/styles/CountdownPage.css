@@ -1,0 +1,477 @@
+.countdown-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffd1dc 0%, #ffb3d9 50%, #ffa8d8 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* Romantic Background Hearts */
+.background-hearts {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-heart {
+  position: absolute;
+  font-size: 50px;
+  opacity: 0.15;
+  animation: gentle-float 8s ease-in-out infinite;
+}
+
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.15;
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+    opacity: 0.25;
+  }
+}
+
+/* Main Content Box */
+.countdown-box {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(145deg, #ffffff 0%, #fff5f8 100%);
+  padding: 45px 35px 40px;
+  border-radius: 35px;
+  max-width: 420px;
+  width: 100%;
+  box-shadow: 
+    0 15px 50px rgba(255, 105, 180, 0.25),
+    0 5px 20px rgba(255, 182, 193, 0.15),
+    inset 0 -2px 10px rgba(255, 192, 203, 0.1);
+  border: 3px solid #ffb6c1;
+  text-align: center;
+}
+
+/* Lock Icon */
+.countdown-lock {
+  font-size: 3.5em;
+  margin-bottom: 18px;
+  filter: drop-shadow(0 4px 10px rgba(255, 105, 180, 0.3));
+  animation: lock-wiggle 3s ease-in-out infinite;
+}
+
+@keyframes lock-wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-8deg);
+  }
+  75% {
+    transform: rotate(8deg);
+  }
+}
+
+/* Title */
+.countdown-title {
+  font-size: 2.2em;
+  background: linear-gradient(135deg, #ff1493 0%, #ff69b4 50%, #ffb6c1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.countdown-subtitle {
+  font-size: 1.05em;
+  color: #ff1493;
+  margin-bottom: 35px;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Heart Container */
+.heart-container {
+  margin: 35px 0;
+  position: relative;
+}
+
+.heart-shape {
+  position: relative;
+  max-width: 340px;
+  margin: 0 auto;
+  animation: heartbeat-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.05);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.05);
+  }
+  56% {
+    transform: scale(1);
+  }
+}
+
+.heart-svg {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 8px 20px rgba(255, 105, 180, 0.3));
+}
+
+/* Names Inside Heart - Top Section */
+.names-top {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  text-align: center;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.name-text {
+  font-size: 0.95em;
+  font-weight: 700;
+  color: #8b008b;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 1),
+    0 0 10px rgba(139, 0, 139, 0.5);
+  letter-spacing: 0.3px;
+  line-height: 1;
+}
+
+/* Countdown Numbers - Bottom Section */
+.countdown-numbers {
+  position: absolute;
+  top: 58%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 70%;
+}
+
+.time-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.number {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #8b008b;
+  line-height: 1;
+  min-height: 1.2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 
+    0 2px 6px rgba(255, 255, 255, 1),
+    0 0 12px rgba(139, 0, 139, 0.5);
+}
+
+.label {
+  font-size: 0.52em;
+  color: #8b008b;
+  margin-top: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 0.9);
+}
+
+/* Date Info */
+.date-info {
+  margin: 30px 0;
+  padding: 22px;
+  background: linear-gradient(135deg, #ffe4ec 0%, #ffd6e6 100%);
+  border-radius: 18px;
+  border: 2px solid #ffb6c1;
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
+}
+
+.date-label {
+  font-size: 1em;
+  color: #ff69b4;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.date-text {
+  font-size: 1.6em;
+  background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  margin-bottom: 5px;
+  letter-spacing: 0.3px;
+}
+
+.time-text {
+  font-size: 1em;
+  color: #ff69b4;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Message Box */
+.message-box {
+  margin-top: 25px;
+  padding: 15px;
+  background: linear-gradient(135deg, #fff0f5 0%, #ffe4ec 100%);
+  border-radius: 12px;
+  border: 2px solid #ffb6c1;
+  box-shadow: 0 3px 10px rgba(255, 182, 193, 0.15);
+}
+
+.message-box p {
+  font-size: 1.08em;
+  background: linear-gradient(135deg, #ff1493 0%, #ff69b4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-style: italic;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Sparkles */
+.countdown-box::before,
+.countdown-box::after {
+  content: '✨';
+  position: absolute;
+  font-size: 1.5em;
+  animation: sparkle 3s ease-in-out infinite;
+}
+
+.countdown-box::before {
+  top: 20px;
+  right: 25px;
+  animation-delay: 0s;
+}
+
+.countdown-box::after {
+  bottom: 25px;
+  left: 25px;
+  animation-delay: 1.5s;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+}
+
+/* Responsive */
+@media (max-width: 450px) {
+  .countdown-box {
+    padding: 38px 28px 35px;
+  }
+
+  .countdown-lock {
+    font-size: 3em;
+  }
+
+  .countdown-title {
+    font-size: 1.9em;
+  }
+
+  .countdown-subtitle {
+    font-size: 1em;
+  }
+
+  .heart-shape {
+    max-width: 300px;
+  }
+
+  .names-top {
+    width: 65%;
+  }
+
+  .name-text {
+    font-size: 0.85em;
+  }
+
+  .countdown-numbers {
+    width: 75%;
+  }
+
+  .number {
+    font-size: 1.6em;
+  }
+
+  .label {
+    font-size: 0.5em;
+  }
+
+  .date-text {
+    font-size: 1.4em;
+  }
+
+  .message-box p {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 380px) {
+  .heart-shape {
+    max-width: 270px;
+  }
+
+ /* Names Inside Heart - Perfectly Centered */
+.names-top {
+  position: absolute;
+  top: 45%;
+  left: 20%;
+  transform: translate(-50%, -50%);  /* ← This centers both ways */
+  width: 60%;
+  text-align: center;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.name-text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #8b008b;
+  font-family: 'Brush Script MT', cursive, 'Comic Sans MS', sans-serif;
+  text-shadow: 
+    0 1px 3px rgba(255, 255, 255, 1),
+    0 0 10px rgba(139, 0, 139, 0.5);
+  letter-spacing: 0.3px;
+  line-height: 1;
+}
+
+  .countdown-numbers {
+    width: 78%;
+    top: 51%;
+  }
+
+  .number {
+    font-size: 1.5em;
+  }
+
+  .label {
+    font-size: 0.48em;
+  }
+
+  .time-row {
+    gap: 10px;
+  }
+}
+
+/* Landscape mode */
+@media (max-height: 700px) and (orientation: landscape) {
+  .countdown-page {
+    padding: 15px;
+  }
+
+  .countdown-box {
+    padding: 30px 25px;
+    max-height: 95vh;
+    overflow-y: auto;
+  }
+
+  .countdown-lock {
+    font-size: 2.5em;
+    margin-bottom: 12px;
+  }
+
+  .countdown-title {
+    font-size: 1.7em;
+    margin-bottom: 8px;
+  }
+
+  .countdown-subtitle {
+    font-size: 0.95em;
+    margin-bottom: 25px;
+  }
+
+  .heart-container {
+    margin: 25px 0;
+  }
+
+  .heart-shape {
+    max-width: 260px;
+  }
+
+  .name-text {
+    font-size: 0.85em;
+  }
+
+  .number {
+    font-size: 1.5em;
+  }
+
+  .countdown-numbers {
+    top: 59%;
+  }
+
+  .date-info {
+    padding: 18px;
+    margin: 22px 0;
+  }
+
+  .message-box {
+    margin-top: 20px;
+    padding: 12px;
+  }
+}
+
+@media (max-height: 600px) and (orientation: landscape) {
+  .countdown-box {
+    padding: 25px 20px;
+  }
+
+  .heart-container {
+    margin: 20px 0;
+  }
+
+  .heart-shape {
+    max-width: 230px;
+  }
+
+  .date-info {
+    margin: 18px 0;
+    padding: 15px;
+  }
+}
