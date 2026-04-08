@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
@@ -8,6 +8,31 @@ const CountdownPage = () => {
   const [timeLeft, setTimeLeft] = useState({});
   const navigate = useNavigate();
 
+  // ✅ Stable function using useCallback
+  const checkStatus = useCallback(async () => {
+    try {
+      // ⚠️ CHANGE THIS URL IN PRODUCTION
+      const response = await axios.get('http://localhost:8080/api/status');
+      const data = response.data;
+
+      if (data.millisecondsUntilUnlock > 0) {
+        calculateTimeLeft(data.millisecondsUntilUnlock);
+      }
+    } catch (error) {
+      console.error('Error checking status:', error);
+    }
+  }, []);
+
+  const calculateTimeLeft = (milliseconds) => {
+    const days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((milliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((milliseconds % (1000 * 60)) / 1000);
+
+    setTimeLeft({ days, hours, minutes, seconds });
+  };
+
+  // ✅ Fixed useEffect dependency issue
   useEffect(() => {
     checkStatus();
     const interval = setInterval(checkStatus, 1000);
@@ -32,28 +57,6 @@ const CountdownPage = () => {
     };
   }, [navigate]);
 
-  const checkStatus = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/status');
-      const data = response.data;
-
-      if (data.millisecondsUntilUnlock > 0) {
-        calculateTimeLeft(data.millisecondsUntilUnlock);
-      }
-    } catch (error) {
-      console.error('Error checking status:', error);
-    }
-  };
-
-  const calculateTimeLeft = (milliseconds) => {
-    const days = Math.floor(milliseconds / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((milliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((milliseconds % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((milliseconds % (1000 * 60)) / 1000);
-
-    setTimeLeft({ days, hours, minutes, seconds });
-  };
-
   // Animated number component
   const AnimatedNumber = ({ value }) => (
     <AnimatePresence mode="wait">
@@ -71,7 +74,7 @@ const CountdownPage = () => {
 
   return (
     <div className="countdown-page">
-      {/* Romantic background hearts */}
+      {/* Background Hearts */}
       <div className="background-hearts">
         {[...Array(6)].map((_, i) => (
           <div
@@ -88,26 +91,23 @@ const CountdownPage = () => {
         ))}
       </div>
 
-      {/* Main Content Box */}
+      {/* Main Content */}
       <motion.div
         className="countdown-box"
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.6, type: "spring" }}
       >
-        {/* Lock Icon */}
         <div className="countdown-lock">🔒</div>
 
-        {/* Title */}
         <h1 className="countdown-title">You Found It! 💕</h1>
         <p className="countdown-subtitle">But our story isn't ready yet...</p>
 
-        {/* Big Heart with Names and Countdown */}
         <div className="heart-container">
           <div className="heart-shape">
             <svg viewBox="0 0 32 29" className="heart-svg">
               <defs>
-                <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="heartGradient">
                   <stop offset="0%" stopColor="#ff69b4" />
                   <stop offset="50%" stopColor="#ffb6c1" />
                   <stop offset="100%" stopColor="#ffc0cb" />
@@ -121,81 +121,33 @@ const CountdownPage = () => {
               />
             </svg>
 
-            {/* Names at Top - Vertical Inside Heart */}
-            <motion.div 
-              className="names-top"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-            >
-              <motion.div
-                className="name-text"
-                animate={{ 
-                  opacity: [0.85, 1, 0.85]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity
-                }}
-              >
-                Pageli
-              </motion.div>
-              <motion.div
-                style={{ fontSize: '1.2em' }}
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  rotate: [0, 360]
-                }}
-                transition={{ 
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-              >
-                💕
-              </motion.div>
-              <motion.div
-                className="name-text"
-                animate={{ 
-                  opacity: [0.85, 1, 0.85]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: 1.5
-                }}
-              >
-                Dhana
-              </motion.div>
+            {/* Names */}
+            <motion.div className="names-top">
+              <div className="name-text">Pageli</div>
+              <div>💕</div>
+              <div className="name-text">Dhana</div>
             </motion.div>
 
-            {/* Countdown Numbers in Middle */}
+            {/* Countdown */}
             <div className="countdown-numbers">
               <div className="time-row">
                 <div className="time-unit">
-                  <div className="number">
-                    <AnimatedNumber value={timeLeft.days || 0} />
-                  </div>
+                  <AnimatedNumber value={timeLeft.days || 0} />
                   <div className="label">Days</div>
                 </div>
                 <div className="time-unit">
-                  <div className="number">
-                    <AnimatedNumber value={timeLeft.hours || 0} />
-                  </div>
+                  <AnimatedNumber value={timeLeft.hours || 0} />
                   <div className="label">Hours</div>
                 </div>
               </div>
+
               <div className="time-row">
                 <div className="time-unit">
-                  <div className="number">
-                    <AnimatedNumber value={timeLeft.minutes || 0} />
-                  </div>
+                  <AnimatedNumber value={timeLeft.minutes || 0} />
                   <div className="label">Min</div>
                 </div>
                 <div className="time-unit">
-                  <div className="number">
-                    <AnimatedNumber value={timeLeft.seconds || 0} />
-                  </div>
+                  <AnimatedNumber value={timeLeft.seconds || 0} />
                   <div className="label">Sec</div>
                 </div>
               </div>
@@ -205,12 +157,11 @@ const CountdownPage = () => {
 
         {/* Date Info */}
         <div className="date-info">
-          <p className="date-label">✨ Our story unlocks on ✨</p>
-          <p className="date-text">April 7th, 2026</p>
-          <p className="time-text">at 12:00 AM</p>
+          <p>✨ Our story unlocks on ✨</p>
+          <p>April 7th, 2026</p>
+          <p>at 12:00 AM</p>
         </div>
 
-        {/* Simple Message */}
         <div className="message-box">
           <p>💕 Worth the wait 💕</p>
         </div>
