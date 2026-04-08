@@ -12,7 +12,7 @@ const CountdownPage = () => {
     checkStatus();
     const interval = setInterval(checkStatus, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [checkStatus]);
 
   // Handle browser back button
   useEffect(() => {
