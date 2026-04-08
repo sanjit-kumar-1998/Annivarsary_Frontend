@@ -12,10 +12,7 @@ const LockScreen = ({ onUnlock }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showHint, setShowHint] = useState(false);
   const [wrongAttempts, setWrongAttempts] = useState(0);
-  const BASE_URL =
-    window.location.hostname === "localhost"
-      ? "http://localhost:8080"
-      : "http://10.227.233.57:8080";
+  const BASE_URL = "https://anniversary-backend-cg5m.onrender.com";
 
    const checkStatus = useCallback(async () => {
     try {

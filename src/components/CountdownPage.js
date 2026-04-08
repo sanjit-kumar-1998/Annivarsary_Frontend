@@ -12,7 +12,7 @@ const CountdownPage = () => {
   const checkStatus = useCallback(async () => {
     try {
       // ⚠️ CHANGE THIS URL IN PRODUCTION
-      const response = await axios.get('http://localhost:8080/api/status');
+      const response = await axios.get('https://anniversary-backend-cg5m.onrender.com/');
       const data = response.data;
 
       if (data.millisecondsUntilUnlock > 0) {
